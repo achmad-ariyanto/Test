@@ -11,7 +11,7 @@ public class controller {
     @GetMapping()
     public Output test() {
         Output output = new Output();
-        output.setText("kata - kata");
+        output.setText("kata - kata - kata - kata");
         output.setNumber(55);
         return output;
     }
