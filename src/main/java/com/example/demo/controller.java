@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.FileWriter;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,8 +24,17 @@ public class controller {
         catch(Exception e){
             output.setIp("cant get ip");
         }
-        output.setText("IP Addr");
+        output.setText("write to file");
         output.setRandom(ThreadLocalRandom.current().nextInt(0, 1000));
+
+        try(final FileWriter fileWriter = new FileWriter("/bcabit/kub/test/samplefile2.txt")){
+            fileWriter.write(output.getText());
+        }
+        catch (Exception e){
+            output.setText("cant write to file");
+        }
+
+
         return output;
     }
 
