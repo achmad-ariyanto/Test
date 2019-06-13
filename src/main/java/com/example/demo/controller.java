@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
@@ -24,8 +27,16 @@ public class controller {
         catch(Exception e){
             output.setIp("cant get ip");
         }
-        output.setText("write to file");
+
+        try {
+            output.setRead_text(new String(Files.readAllBytes(Paths.get("/bcabit/kub/test/samplefile2.txt"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+            output.setText("cant read from file");
+        }
+
         output.setRandom(ThreadLocalRandom.current().nextInt(0, 1000));
+        output.setText(Integer.toString(output.getRandom()) + output.getRead_text());
 
         try(final FileWriter fileWriter = new FileWriter("/bcabit/kub/test/samplefile2.txt")){
             fileWriter.write(output.getText());
@@ -41,6 +52,7 @@ public class controller {
     @Getter
     @Setter
     class Output {
+        String read_text;
         String text;
         String ip;
         Integer random;
