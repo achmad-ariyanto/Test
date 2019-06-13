@@ -12,7 +12,8 @@ public class controller {
     public Output test() {
         Output output = new Output();
         output.setText("kata - kata - kata - kata");
-        output.setNumber(55);
+        output.setText2("test deploy");
+        output.setNumber(553333);
         return output;
     }
 
@@ -20,6 +21,7 @@ public class controller {
     @Setter
     class Output {
         String text;
+        String text2;
         Integer number;
     }
 }
