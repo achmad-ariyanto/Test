@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/demo-spring-booth-with-docker.jar demo-spring-booth-with-docker.jar
-EXPOSE 80
-ENTRYPOINT ["java", "-jar", "demo-spring-booth-with-docker.jar"]
+ADD target/account-0.0.1.jar account-0.0.1.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","account-0.0.1.jar"]
