@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @RestController
 public class controller {
 
-    @GetMapping()
+    @GetMapping("/test")
     public Output test() {
         Output output = new Output();
         try(final DatagramSocket socket = new DatagramSocket()){
@@ -29,7 +29,7 @@ public class controller {
         }
 
         try {
-            output.setRead_text(new String(Files.readAllBytes(Paths.get("/bcabit/kub/test/samplefile2.txt"))));
+            output.setRead_text(new String(Files.readAllBytes(Paths.get("C:\\Users\\u066243\\Desktop\\temp\\routing-table.jpg"))));
         } catch (IOException e) {
             e.printStackTrace();
             output.setText("cant read from file");
@@ -38,7 +38,7 @@ public class controller {
         output.setRandom(ThreadLocalRandom.current().nextInt(0, 1000));
         output.setText(Integer.toString(output.getRandom()) + output.getRead_text());
 
-        try(final FileWriter fileWriter = new FileWriter("/bcabit/kub/test/samplefile2.txt")){
+        try(final FileWriter fileWriter = new FileWriter("C:\\Users\\u066243\\Desktop\\temp\\routing-table.txt")){
             fileWriter.write(output.getText());
         }
         catch (Exception e){
