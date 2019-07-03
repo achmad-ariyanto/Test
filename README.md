@@ -1,3 +1,1 @@
-clear
-test log
-test server mati
+test repo mati2
